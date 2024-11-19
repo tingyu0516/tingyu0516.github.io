@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>听雨歌楼上</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2024-11-04T14:31:36.556Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>听雨歌楼上</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自然邻近算法</title>
+    <link href="http://example.com/2024/11/03/First-post/"/>
+    <id>http://example.com/2024/11/03/First-post/</id>
+    <published>2024-11-03T13:13:20.000Z</published>
+    <updated>2024-11-04T14:31:36.556Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="KNN算法"><a href="#KNN算法" class="headerlink" title="KNN算法"></a>KNN算法</h1><p>要想了解自然邻近算法，首先我们需要知道什么是KNN算法（K-Nearest Neighbors，K最近邻算法）。</p><p>KNN算法是一种常用的监督学习算法。在分类任务中，KNN利用预测样本和训练样本的某种距离（常见于欧式距离）来计算出K个距离预测样本最近的样本点，根据这些样本点的类别来进行投票，票数越多就将样本预测成那一类样本。而在回归任务中，KNN算法是利用邻近K个样本值的平均数作为最终的结果。此外，无论是在分类任务还是回归任务中，KNN算法还能基于权重加权来计算出最终的结果，如根据距离的大小来加权，距离越小权值越高。</p><p>KNN算法是一种“懒惰学习”算法，什么是懒惰学习算法，就是在训练的时候，仅仅是把训练样本给存储起来，等到预测的时候处理。即一开始KNN算法并不会计算训练样本之间的距离，而仅仅是保存起来，当输入一个待预测样本时。KNN算法根据保存好的训练样本和待预测样本距离来返回相应的结果。<br>此外，还有“急切学习”算法，现如今的技术普遍时急切学习算法，常见的深度学习算法就是典型的急切学习算法。</p><h1 id="自然邻近算法"><a href="#自然邻近算法" class="headerlink" title="自然邻近算法"></a>自然邻近算法</h1><p>KNN算法的性能往往依赖于K值选取，然而K值的选取并不是一件简单的事，需要网格搜索，一个一个地尝试，而这对于训练时间的消耗是巨大的。哪有什么方法能够避免或者降低这种没必要的时间消耗呢？</p><p>有，那就是自然邻近算法。自然邻近算法本质就是KNN算法，而与传统KNN算法不同的是，KNN算法是基于K个邻近的邻居来决定最终的结果,而自然邻居算法并不依赖于K值的选择，它能自主选择K值。</p><p>自然邻近算法的伪代码如下：</p><p>输入: $X = {x<em>{1}, x</em>{2}, …, x_{n}} $ (训练集), $ NaN $, $ Nb $, $ \lambda $</p><ol><li>初始化: $ r = 1 $, $ Nb = 0 $, $ NN<em>{r} = \emptyset $, $ NaN</em>{r} = \emptyset $</li><li>利用数据集$X $创建一棵 kd-tree $T $</li><li><p>For each point $x_{i} $ in $X $:</p><p>a. 利用 $T $ 找到 $r$-th 个$x<em>{i} $邻居 $ x</em>{j} $</p><p>b. $ Nb(x<em>{j}) = Nb(x</em>{j}) + 1 $</p><p>c. $ NN<em>{r}(x</em>{i}) = NN<em>{r}(x</em>{i}) \cup {x_{j}} $</p><p>d. $ NaN<em>{r}(x</em>{j}) = NaN<em>{r}(x</em>{j}) \cup {x_{i}} $</p></li><li><p>统计$NaN$的数据个数 ($Num$)</p><p>a. If the $Num$ doesn’t change then</p><p> i. $ \lambda = r $ and execute step 5</p><p>b. Else</p><p>   i. $ r = r + 1 $ and execute step 3</p></li><li><p>输出 $ NaN $, $ Nb $, $ \lambda $</p></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;KNN算法&quot;&gt;&lt;a href=&quot;#KNN算法&quot; class=&quot;headerlink&quot; title=&quot;KNN算法&quot;&gt;&lt;/a&gt;KNN算法&lt;/h1&gt;&lt;p&gt;要想了解自然邻近算法，首先我们需要知道什么是KNN算法（K-Nearest Neighbors，K最近邻算法）。&lt;/</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://example.com/2024/11/03/hello-world/"/>
+    <id>http://example.com/2024/11/03/hello-world/</id>
+    <published>2024-11-03T10:00:05.238Z</published>
+    <updated>2024-11-03T10:00:05.238Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
