@@ -3,11 +3,11 @@
   <title>听雨歌楼上</title>
   
   
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://tingyu0516.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://tingyu0516.github.io/"/>
   <updated>2024-11-19T00:06:52.880Z</updated>
-  <id>http://example.com/</id>
+  <id>https://tingyu0516.github.io/</id>
   
   <author>
     <name>听雨歌楼上</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>好的模型在指令微调上效果并不一定是最好的</title>
-    <link href="http://example.com/2024/11/12/Stronger%20Models%20are%20NOT%20Stronger%20Teachers%20for%20Instruction%20Tuning/"/>
-    <id>http://example.com/2024/11/12/Stronger%20Models%20are%20NOT%20Stronger%20Teachers%20for%20Instruction%20Tuning/</id>
+    <link href="https://tingyu0516.github.io/2024/11/12/Stronger%20Models%20are%20NOT%20Stronger%20Teachers%20for%20Instruction%20Tuning/"/>
+    <id>https://tingyu0516.github.io/2024/11/12/Stronger%20Models%20are%20NOT%20Stronger%20Teachers%20for%20Instruction%20Tuning/</id>
     <published>2024-11-12T07:27:13.000Z</published>
     <updated>2024-11-19T00:06:52.880Z</updated>
     
@@ -39,8 +39,8 @@
   
   <entry>
     <title>自然邻近算法</title>
-    <link href="http://example.com/2024/11/03/First-post/"/>
-    <id>http://example.com/2024/11/03/First-post/</id>
+    <link href="https://tingyu0516.github.io/2024/11/03/First-post/"/>
+    <id>https://tingyu0516.github.io/2024/11/03/First-post/</id>
     <published>2024-11-03T13:13:20.000Z</published>
     <updated>2024-11-06T13:25:13.003Z</updated>
     
@@ -61,8 +61,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://example.com/2024/11/03/hello-world/"/>
-    <id>http://example.com/2024/11/03/hello-world/</id>
+    <link href="https://tingyu0516.github.io/2024/11/03/hello-world/"/>
+    <id>https://tingyu0516.github.io/2024/11/03/hello-world/</id>
     <published>2024-11-03T10:00:05.238Z</published>
     <updated>2024-11-03T10:00:05.238Z</updated>
     
