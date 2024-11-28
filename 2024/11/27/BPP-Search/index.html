@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>BPP-Search:增强用于数学建模问题解决的思维树推理 | 听雨歌楼上</title><meta name="author" content="听雨歌楼上"><meta name="copyright" content="听雨歌楼上"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="论文地址：https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2411.17404  动机 现有开源运筹学数据集在数学建模过程中缺乏详细的标注，特别是变量定义等过程细节，这限制了强化学习（Reinforcement Learning, RL）的应用。为了解决这一问题，作者提出了以下几点： 构建详细标注的数据集：作者发布了名为StructuredOR的新数据集，该数据集不仅提供了目标值用于评估，还包含了完整">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BPP-Search:增强用于数学建模问题解决的思维树推理">
+<meta property="og:url" content="https://tingyu0516.github.io/2024/11/27/BPP-Search/index.html">
+<meta property="og:site_name" content="听雨歌楼上">
+<meta property="og:description" content="论文地址：https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2411.17404  动机 现有开源运筹学数据集在数学建模过程中缺乏详细的标注，特别是变量定义等过程细节，这限制了强化学习（Reinforcement Learning, RL）的应用。为了解决这一问题，作者提出了以下几点： 构建详细标注的数据集：作者发布了名为StructuredOR的新数据集，该数据集不仅提供了目标值用于评估，还包含了完整">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tingyu0516.github.io/img/touxiang.jpg">
+<meta property="article:published_time" content="2024-11-27T14:17:49.000Z">
+<meta property="article:modified_time" content="2024-11-28T00:12:51.103Z">
+<meta property="article:author" content="听雨歌楼上">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tingyu0516.github.io/img/touxiang.jpg"><link rel="shortcut icon" href="/img/touxiang.jpg"><link rel="canonical" href="https://tingyu0516.github.io/2024/11/27/BPP-Search/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BPP-Search:增强用于数学建模问题解决的思维树推理',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-11-28 08:12:51',
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="听雨歌楼上" type="application/atom+xml">
+</head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">听雨歌楼上</span></a><a class="nav-page-title" href="/"><span class="site-name">BPP-Search:增强用于数学建模问题解决的思维树推理</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">BPP-Search:增强用于数学建模问题解决的思维树推理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-27T14:17:49.000Z" title="发表于 2024-11-27 22:17:49">2024-11-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-28T00:12:51.103Z" title="更新于 2024-11-28 08:12:51">2024-11-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2411.17404">https://arxiv.org/pdf/2411.17404</a></p>
+<h1 id="动机"><a class="markdownIt-Anchor" href="#动机"></a> 动机</h1>
+<p>现有开源运筹学数据集在数学建模过程中缺乏详细的标注，特别是变量定义等过程细节，这限制了强化学习（Reinforcement Learning, RL）的应用。为了解决这一问题，作者提出了以下几点：</p>
+<p>构建详细标注的数据集：作者发布了名为StructuredOR的新数据集，该数据集不仅提供了目标值用于评估，还包含了完整的数学建模过程的详细标注，从而支持更广泛的基于RL的方法应用。</p>
+<p>提出BPP-Search算法：为了增强树状思维结构中的推理能力，作者提出了一种新的方法——BPP-Search。该方法结合了束搜索（Beam Search）、过程奖励模型（Process Reward Model, PRM）和成对偏好算法（Pairwise Preference Algorithm），能够在不进行穷举搜索的情况下提高搜索效率和准确性。</p>
+<p>具体来说，BPP-Search通过以下几个步骤来实现其目标：</p>
+<p>PRM的训练：PRM用于评估推理过程中的每个中间步骤，提供分数以指导节点选择。<br />
+成对偏好模型：由于PRM在区分相似候选节点时存在困难，作者引入了一个成对偏好模型，该模型通过对候选节点进行成对比较，生成偏好分数，从而更准确地选择最优解。<br />
+随机贪婪算法：为了应对PRM评分精度的限制，作者还引入了随机贪婪算法，该算法在选择候选节点时引入随机性，以减轻PRM评分变化的影响。<br />
+通过这些方法，BPP-Search能够在复杂的数学建模任务中更高效地找到正确的解决方案，显著优于现有的链式思维（Chain-of-Thought, CoT）、自一致性（Self-Consistency, SC）和树状思维（Tree-of-Thought, ToT）方法。</p>
+<h1 id="创新与假设"><a class="markdownIt-Anchor" href="#创新与假设"></a> 创新与假设</h1>
+<p>该论文旨在验证一个关于提高数学建模问题解决能力的科学假设。具体来说，论文提出了一种名为BPP-Search的新方法，该方法结合了束搜索（Beam Search）、过程奖励模型（Process Reward Model, PRM）和成对偏好算法（Pairwise Preference Algorithm），以增强树思维结构（Tree of Thought, ToT）中的推理能力。</p>
+<p>科学假设<br />
+论文的主要科学假设是：通过集成束搜索、过程奖励模型和成对偏好算法，BPP-Search能够在数学建模问题中更高效地探索树结构，避免穷举搜索，同时提高准确率。具体而言，假设BPP-Search相比现有的链式思维（Chain-of-Thought, CoT）、自一致性（Self-Consistency, SC）和树思维（ToT）等方法，在复杂推理任务中能够显著提高准确率和效率。</p>
+<h1 id="理论方法"><a class="markdownIt-Anchor" href="#理论方法"></a> 理论方法</h1>
+<h2 id="数据集生成"><a class="markdownIt-Anchor" href="#数据集生成"></a> 数据集生成：</h2>
+<p>论文引入了一个新的数据集StructuredOR，该数据集不仅提供了目标值，还详细标注了整个数学建模过程，填补了现有数据集在标注建模过程方面的空白。<br />
+数据集的构建流程包括使用大型语言模型（如GPT-4o）生成抽象模型的分布，然后通过模拟生成具体的参数数据，并将其转换为线性规划（LP）格式的模型，最后使用Gurobi求解器验证模型的可解性和正确性。</p>
+<h3 id="贪婪算法"><a class="markdownIt-Anchor" href="#贪婪算法"></a> 贪婪算法</h3>
+<p>传统的贪婪算法是当前分数最大化的一种算法，具体的数学表达式如下：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>a</mi><mi>r</mi><mi>g</mi><mi>m</mi><mi>a</mi><msub><mi>x</mi><mrow><mi>a</mi><mo>∈</mo><mi>A</mi></mrow></msub><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a = argmax_{a\in A}(P(a))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">m</span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mrel mtight">∈</span><span class="mord mathnormal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.17737em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span><br />
+其中，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span></span></span></span>表示动作<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span></span></span></span>的得分，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span>是动作集合。</p>
+<p>而epsilon-贪婪算法是一种改进的贪婪算法，它在选择动作时引入了随机性，以平衡探索和利用。具体的数学表达式如下：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>random choice</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext> w.p. </mtext><mi>ϵ</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>a</mi><mo>=</mo><mi>a</mi><mi>r</mi><mi>g</mi><mi>m</mi><mi>a</mi><msub><mi>x</mi><mrow><mi>a</mi><mo>∈</mo><mi>A</mi></mrow></msub><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext> w.p. </mtext><mn>1</mn><mo>−</mo><mi>ϵ</mi></mrow></mstyle></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{cases}
+ \text{random choice} &amp; \text{ w.p. } \epsilon \\
+ a = argmax_{a\in A}(P(a)) &amp; \text{ w.p. } 1 - \epsilon
+\end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">random choice</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">m</span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mrel mtight">∈</span><span class="mord mathnormal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.17737em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord"> w.p. </span></span><span class="mord mathnormal">ϵ</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord"> w.p. </span></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal">ϵ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<h3 id="束搜索算法"><a class="markdownIt-Anchor" href="#束搜索算法"></a> 束搜索算法</h3>
+<p>束搜索算法是一种启发式搜索算法，它通过限制搜索的深度或广度来减少搜索空间。具体的数学表达式如下：</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>t</mi><mi>o</mi><mi>p</mi><mo>−</mo><mi>k</mi><mo stretchy="false">(</mo><msub><mo>⋃</mo><mrow><mi>a</mi><mo>∈</mo><msub><mi>B</mi><mi>t</mi></msub></mrow></msub><mi>E</mi><mi>x</mi><mi>p</mi><mi>a</mi><mi>n</mi><mi>d</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B_{t + 1} = top-k(\bigcup_{a\in B_t}Expand(a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">o</span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.14981em;vertical-align:-0.39981em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mopen">(</span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⋃</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.17862099999999992em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mrel mtight">∈</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.29634285714285713em;"><span style="top:-2.357em;margin-left:-0.05017em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.39981em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal">x</span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal">n</span><span class="mord mathnormal">d</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span></span></span></span><br />
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">B_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>表示表示第t步的束候选项集合<br />
+Expand(a) 表示候选项a的所有可能后继节点的集合，top-k选择得分最高的k个候选项</p>
+<h3 id="思维树"><a class="markdownIt-Anchor" href="#思维树"></a> 思维树</h3>
+<p>与CoT（Chain of Thought）和SC（Self-Consistency）相比，ToT（Tree of Thoughts）具有生成多个准确结果的潜力，但在从众多叶节点中选择单一答案时面临挑战。论文的目标是加速这一过程，并有效地检索出满意的解决方案。在数学建模任务中，遵循从问题、集合、参数、变量、目标到约束的结构化路径。为每个示例构建一个六层树结构会导致高计算成本。为了解决这个问题，我们根据属性相似性对节点进行分组，并将每个节点限制为最多三个子节点。生成的树结构如下：第一层代表问题，第二层结合集合和参数，第三层包括变量，第四层整合目标和约束。这种方法在实验中平衡了树的宽度和计算效率。</p>
+<h3 id="structuredor数据集的构建过程"><a class="markdownIt-Anchor" href="#structuredor数据集的构建过程"></a> StructuredOR数据集的构建过程：</h3>
+<p>步骤1：使用GPT-4o生成抽象模型中的集合和参数的分布。<br />
+步骤2：通过模拟过程生成特定实例的参数数据。<br />
+步骤3：使用解析器和建模工具将这些参数转换为线性规划（LP）格式的具体模型。<br />
+步骤4：使用Gurobi求解器验证模型的可解性和正确性，选择可解的问题作为标注实例，包含建模过程和相关目标值。</p>
+<h2 id="过程奖励模型prm"><a class="markdownIt-Anchor" href="#过程奖励模型prm"></a> 过程奖励模型（PRM）：</h2>
+<p>PRM用于评估推理过程中的每个中间步骤，提供分数以指导节点选择。<br />
+PRM的训练数据可以通过手动标注或蒙特卡洛树搜索（MCTS）生成，但手动标注更为精确和确定。</p>
+<h2 id="bpp-search算法"><a class="markdownIt-Anchor" href="#bpp-search算法"></a> BPP-Search算法：</h2>
+<ol>
+<li>束搜索（Beam Search）：在每一步中保留固定数量的最有可能的候选节点，平衡探索和利用。PRM与贪婪算法（Greedy）和束搜索算法（Beam Search）相结合，PRM提供分数来指导节点选择。</li>
+<li>过程奖励模型（PRM）：提供分数以指导节点选择。</li>
+<li>成对偏好算法（Pairwise Preference Algorithm）：通过训练一个偏好模型，生成成对偏好分数，用于最终候选节点的排序，从而更准确地选择最优解。</li>
+</ol>
+<h1 id="实验结果"><a class="markdownIt-Anchor" href="#实验结果"></a> 实验结果</h1>
+<p>实验结果显示，BPP-Search在StructuredOR、MAMO-ComplexLP和NL4OPT数据集上的表现显著优于其他方法，特别是在正确率和推理步骤数方面。例如，在StructuredOR数据集上，BPP-Search的正确率为0.933，平均推理步骤数为15，而其他方法的正确率和步骤数均较低。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://tingyu0516.github.io">听雨歌楼上</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://tingyu0516.github.io/2024/11/27/BPP-Search/">https://tingyu0516.github.io/2024/11/27/BPP-Search/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://tingyu0516.github.io" target="_blank">听雨歌楼上</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2024/11/26/Scalable-AGI/" title="基于关键词引导的预训练用于接地对话生成"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">基于关键词引导的预训练用于接地对话生成</div></div><div class="info-2"><div class="info-item-1">论文地址：https://arxiv.org/pdf/2212.01739  动机 论文提出在对话生成中如何有效地利用外部知识，以构建更加有用和可靠的对话代理。具体来说，论文关注的是在没有额外知识标注的情况下，如何通过自监督预训练方法来提高对话系统在不同类型的外部知识上的表现。这涉及到两个主要挑战： 多样化的知识类型：下游任务可能需要不同类型的知识，如常识知识图谱、人物描述、维基百科文章等。 缺乏大规模标注数据：收集带有知识标注的对话数据通常成本高昂，限制了模型的训练和泛化能力。 为了解决这些问题，论文提出了KPT（Keyword-guided...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">听雨歌楼上</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%9C%BA"><span class="toc-number">1.</span> <span class="toc-text"> 动机</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E6%96%B0%E4%B8%8E%E5%81%87%E8%AE%BE"><span class="toc-number">2.</span> <span class="toc-text"> 创新与假设</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%90%86%E8%AE%BA%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text"> 理论方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E7%94%9F%E6%88%90"><span class="toc-number">3.1.</span> <span class="toc-text"> 数据集生成：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 贪婪算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%9F%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.2.</span> <span class="toc-text"> 束搜索算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E7%BB%B4%E6%A0%91"><span class="toc-number">3.1.3.</span> <span class="toc-text"> 思维树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#structuredor%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E6%9E%84%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-number">3.1.4.</span> <span class="toc-text"> StructuredOR数据集的构建过程：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B%E5%A5%96%E5%8A%B1%E6%A8%A1%E5%9E%8Bprm"><span class="toc-number">3.2.</span> <span class="toc-text"> 过程奖励模型（PRM）：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bpp-search%E7%AE%97%E6%B3%95"><span class="toc-number">3.3.</span> <span class="toc-text"> BPP-Search算法：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">4.</span> <span class="toc-text"> 实验结果</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/27/BPP-Search/" title="BPP-Search:增强用于数学建模问题解决的思维树推理">BPP-Search:增强用于数学建模问题解决的思维树推理</a><time datetime="2024-11-27T14:17:49.000Z" title="发表于 2024-11-27 22:17:49">2024-11-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/26/Scalable-AGI/" title="基于关键词引导的预训练用于接地对话生成">基于关键词引导的预训练用于接地对话生成</a><time datetime="2024-11-26T15:05:16.000Z" title="发表于 2024-11-26 23:05:16">2024-11-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/26/Marco-o1/" title="Marco-o1：迈向用于开放式解决方案的开放推理模型">Marco-o1：迈向用于开放式解决方案的开放推理模型</a><time datetime="2024-11-25T23:48:15.000Z" title="发表于 2024-11-26 07:48:15">2024-11-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/24/Intent-Dialogue/" title="面向多轮意图分类的意图感知对话生成与多任务对比学习">面向多轮意图分类的意图感知对话生成与多任务对比学习</a><time datetime="2024-11-24T14:27:19.000Z" title="发表于 2024-11-24 22:27:19">2024-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/12/Stronger%20Models%20are%20NOT%20Stronger%20Teachers%20for%20Instruction%20Tuning/" title="好的模型在指令微调上效果并不一定是最好的">好的模型在指令微调上效果并不一定是最好的</a><time datetime="2024-11-12T07:27:13.000Z" title="发表于 2024-11-12 15:27:13">2024-11-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By 听雨歌楼上</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
