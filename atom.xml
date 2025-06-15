@@ -6,7 +6,7 @@
   <link href="https://tingyu0516.github.io/atom.xml" rel="self"/>
   
   <link href="https://tingyu0516.github.io/"/>
-  <updated>2025-06-12T15:40:41.542Z</updated>
+  <updated>2025-06-15T15:04:26.389Z</updated>
   <id>https://tingyu0516.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MOE</title>
+    <link href="https://tingyu0516.github.io/2025/06/15/MOE/"/>
+    <id>https://tingyu0516.github.io/2025/06/15/MOE/</id>
+    <published>2025-06-15T12:42:21.000Z</published>
+    <updated>2025-06-15T15:04:26.389Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="什么是混合专家模型"><a class="markdownIt-Anchor" href="#什么是混合专家模型"></a> 什么是混合专家模型</h1><p>在深入探讨混合专家模型(Mixture of Experts, MoE)之前，让我们先来了解一下传统的稠密模型(Dense Model)。稠密模型是深度学习中最基础也是最常见的模型架构之一，它的特点是所有参数都会被激活并使用，就像一张&quot;密不透风&quot;的网，每个神经元都参与计算过程。这种模型结构虽然简单直观，但在处理大规模任务时往往会遇到计算资源消耗大、训练效率低等问题，尤其大模型推理时会造成低吞吐量和高延迟，如为了回答1+1等于几，模型需要用其&quot;毕生所学&quot;来回答，这显然不合适。正是在这种背景下，业界急切地想寻找一条新的出路，而混合专家模型(MOE)提供了一份完美的答卷。MOE的核心思维很简单，但是却很强大：&quot;不需要大模型成为一个全能的“个人”，而是组建一个团队。&quot;</p><h1 id="moe核心组件"><a class="markdownIt-Anchor" href="#moe核心组件"></a> MOE核心组件</h1><h2 id="专家网络-the-experts"><a class="markdownIt-Anchor" href="#专家网络-the-experts"></a> 专家网络 (The Experts)</h2><p>MOE的专家网络其实可以理解为一群“专业人士”组成的团队。和传统的FFN（前馈神经网络）不同，FFN每次都让所有参数都参与计算，相当于每个人都要干活。而MOE的做法是，每次只挑选最合适的少数几个专家来处理当前的问题，这就是所谓的“稀疏激活”。</p><h2 id="门控网络路由器-the-gating-networkrouter"><a class="markdownIt-Anchor" href="#门控网络路由器-the-gating-networkrouter"></a> 门控网络/路由器 (The Gating Network/Router)</h2><p>门控网络（有时也叫路由器）是MOE架构中非常关键的部分。它的主要作用是根据每个输入token的特征，智能地决定应该把这个token分配给哪些专家网络来处理。可以把门控网络想象成一个“调度员”或者“分流器”，它会为每个输入分配一个权重分布，告诉模型哪些专家更擅长处理当前这个输入。</p><h1 id="为什么moe这么强大"><a class="markdownIt-Anchor" href="#为什么moe这么强大"></a> 为什么MOE这么强大</h1><p>以内存换性能，举个具体的数字例子：假设每个专家有10亿参数，8个专家总共80亿参数。传统FFN每次都要用10亿参数计算，MOE只激活2个专家，每次只用20亿参数计算，但知识容量却是8倍。也就是说，MOE用更少的计算量，获得了更强的模型能力，用仅仅2倍的计算量，就实现了一个拥有8倍知识容量的模型，打破了“模型越大，计算越慢”的魔咒。然而显存的占用并没有减少，80亿参数还是要完整地加载到设备上，这也是MOE的主要成本。</p><p>总结一下，MOE的专家网络通过“稀疏激活”实现了知识容量和计算效率的解耦：虽然总参数量很大，但每次推理只用很小一部分参数参与计算。这种设计非常适合大规模模型，尤其是在云端有充足显存资源的场景下，可以用更高的内存成本换取更快的推理速度和更强的模型表现力。</p><h1 id="moe面临的挑战"><a class="markdownIt-Anchor" href="#moe面临的挑战"></a> MOE面临的挑战</h1><ul><li><strong>内存开销大</strong>：虽然MOE在计算时比传统稠密模型节省了不少算力，但所有专家网络的参数依然需要同时常驻在内存（或显存）中，随时待命，这对硬件配置提出了很高的要求。</li><li><strong>训练难度高</strong>：如何让每个专家都能“各司其职”，避免出现有的专家“过劳”被频繁调用，有的专家“摸鱼”很少参与训练，是MOE训练中的一大挑战。如果分配不均，部分专家学不到有用的知识，模型整体效果也会受到影响。</li></ul><h1 id="deepseekv2-moe"><a class="markdownIt-Anchor" href="#deepseekv2-moe"></a> deepseekv2 MOE</h1><p>DeepSeek-V2 的混合专家模型（MoE）架构是在传统MoE模型基础上的一次重要演进，它巧妙地解决了专家网络中知识冗余的问题。传统MoE（如Mixtral）虽然高效，但不同的专家之间仍然可能学习到重叠的知识。DeepSeek团队认为，通过提升专家的&quot;专业化&quot;程度，可以用更少的激活参数实现同样甚至更强的性能。</p><p>为了实现这一目标，DeepSeek-V2 采用了两种核心创新策略：</p><ol><li><p><strong>细粒度专家切分 (Fine-Grained Expert Segmentation)</strong>：<br />这个策略将专家网络分解成更小、更专注的单元。每个小单元只负责学习一小部分特定的、不重叠的知识。这样做的好处是：</p><ul><li><strong>减少冗余</strong>：专家们各有所长，知识重叠度大大降低。</li><li><strong>降低激活参数</strong>：由于每个专家更&quot;专&quot;，在处理特定任务时，模型可以进行更精确的专家组合，从而用更少的激活参数完成任务。</li><li><strong>提升准确性</strong>：更精细的专家组合带来了更强的模型能力。</li></ul></li><li><p><strong>共享专家隔离 (Shared Expert Isolation)</strong>：<br />这个策略的设计非常巧妙。DeepSeek-V2 将一部分专家指定为&quot;共享专家&quot;，这些专家在每次计算中都会被激活。它们的核心任务是学习和整合那些在各种不同任务和语境下都通用的&quot;常识性&quot;知识。通过把这些通用知识集中到共享专家中，其他的&quot;路由专家&quot;就可以卸下包袱，更加专注于自己擅长的特定领域，从而避免了重复学习通用知识的冗余。这就像一个团队里，有几位成员负责处理所有人都需要的基础信息，而其他成员则可以安心地成为各自领域的顶尖专家。</p></li></ol><p>通过这两项创新，DeepSeek-V2 的 MoE 架构实现了极高的效率。在早期的 DeepSeekMoE 模型（164亿总参数）中，每次推理只需要激活28亿参数（约17%），就能达到与 Llama 7B（70亿参数）相当的性能。</p><h1 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h1><p>简单来说，MOE（混合专家模型）通过引入多个专家网络，每次只激活其中一小部分来参与计算，大大减少了推理时的计算量。这样既提升了模型的知识容量，又提高了推理效率，非常适合大规模模型在实际场景中的应用。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;什么是混合专家模型&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#什么是混合专家模型&quot;&gt;&lt;/a&gt; 什么是混合专家模型&lt;/h1&gt;
+&lt;p&gt;在深入探讨混合专家模型(Mixture of Experts, MoE)之前，让我们先来了解一下传统的</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>拒绝采样</title>
